@@ -7,10 +7,6 @@
 		<title>
 		{% block title %}{% endblock %}
 		</title>
-		<link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" />
-		<link href="{{ url_for('static', filename='css/font-awesome.css') }}" rel="stylesheet" />
-		<link href="{{ url_for('static', filename='css/fonts.css') }}" rel='stylesheet' type='text/css' /> 
-		<link href="{{ url_for('static', filename='css/custom-styles.css') }}" rel="stylesheet" />
 		{% block head %}{% endblock %}				 
 	</head>
 
@@ -52,24 +48,26 @@
 					<div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>
 						<div class="sidebar-collapse">
 							<ul class="nav" id="main-menu">
-
 								<li>
-										<a class="active-menu" href="{{url_for('project_list')}}"><i class="fa fa-dashboard"></i> 项目管理</a>
+									<a href="{{url_for('index')}}"><i class="fa fa-dashboard"></i>首页</a>
 								</li>
 								<li>
-										<a href="ui-elements.html"><i class="fa fa-desktop"></i> 模块管理</a>
+									<a href="{{url_for('project_list')}}"><i class="fa fa-table"></i> 项目管理</a>
 								</li>
 								<li>
-										<a href="tab-panel.html"><i class="fa fa-qrcode"></i> 用例管理</a>
+									<a href="{{url_for('module_list')}}"><i class="fa fa-desktop"></i> 模块管理</a>
 								</li>
 								<li>
-										<a href="chart.html"><i class="fa fa-qrcode"></i> chart</a>
+									<a href="{{url_for('case_list')}}"><i class="fa fa-qrcode"></i> 用例管理</a>
+								</li>
+{# 								<li>
+									<a href="chart.html"><i class="fa fa-qrcode"></i> chart</a>
+								</li> #}
+								<li>
+									<a href="{{url_for('report_list')}}"><i class="fa fa-table"></i> 报告管理</a>
 								</li>
 								<li>
-										<a href="table.html"><i class="fa fa-table"></i> 报告管理</a>
-								</li>
-								<li>
-										<a href="form.html"><i class="fa fa-edit"></i> 系统设置 </a>
+									<a href="{{url_for('settings')}}"><i class="fa fa-edit"></i> 系统设置 </a>
 								</li>
 
 
@@ -103,15 +101,8 @@
 					</div>
 				</nav>
 		</div>
-		
-		{% block script %}{% endblock %}
-		{% block content %}{% endblock %}
 
-		<script src="{{ url_for('static', filename='js/jquery-1.10.2.js') }}"></script>
-		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-		<script src="{{ url_for('static', filename='js/jquery.metisMenu.js') }}"></script>
-		<script src="{{ url_for('static', filename='js/custom-scripts.js') }}"></script>
-		<script src="{{ url_for('static', filename='js/Lightweight-Chart/jquery.chart.js') }}"></script>  
+{% block content %}{% endblock %}
 
 </body>
 
