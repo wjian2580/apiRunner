@@ -1,0 +1,84 @@
+﻿{% extends "base.html" %}
+
+{% block title %}
+    ApiRunner-charts
+{% endblock %}
+
+{% block head %}  
+    <link href="{{url_for('static', filename='js/morris/morris-0.4.3.min.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='js/morris/raphael-2.1.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/morris/morris.js') }}""></script>
+    <script src="{{ url_for('static', filename='js/easypiechart.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/easypiechart-data.js') }}"></script>  
+{% endblock %}
+
+{% block content %}
+    
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                Charts <small>Show up your stats</small>
+                </h1>
+            </div>
+        </div> 
+        <!-- /. ROW  -->
+
+        <div class="row"> 
+            <div class="col-md-6 col-sm-12 col-xs-12">                     
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Bar Chart
+                    </div>
+                    <div class="panel-body">
+                        <div id="morris-bar-chart"></div>
+                    </div>
+                </div>            
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">                     
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    Area Chart
+                    </div>
+                    <div class="panel-body">
+                        <div id="morris-area-chart"></div>
+                    </div>
+                </div>            
+            </div> 
+
+        </div>
+        <!-- /. ROW  -->
+        <div class="row">                     
+
+            <div class="col-md-6 col-sm-12 col-xs-12">                     
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    Line Chart
+                    </div>
+                    <div class="panel-body">
+                        <div id="morris-line-chart"></div>
+                    </div>
+                </div>            
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">                     
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    Donut Chart
+                    </div>
+                    <div class="panel-body">                            
+                        <div id="morris-donut-chart"></div>
+                    </div>
+                </div>            
+            </div> 
+
+        </div>
+    <!-- /. PAGE INNER  -->
+    </div>
+<!-- /. PAGE WRAPPER  -->
+</div>
+
+{% endblock %}
