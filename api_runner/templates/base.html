@@ -6,8 +6,31 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>
 		{% block title %}{% endblock %}
-		</title>
-		{% block head %}{% endblock %}				 
+		</title>			
+		<link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" />
+		<link href="{{ url_for('static', filename='css/font-awesome.css') }}" rel="stylesheet" />
+		<link href="{{ url_for('static', filename='js/morris/morris-0.4.3.min.css') }}" rel="stylesheet" />
+		<link href="{{ url_for('static', filename='css/fonts.css') }}" rel='stylesheet' type='text/css' /> 
+	    <link href="{{ url_for('static', filename='css/custom-styles.css') }}" rel="stylesheet" />
+	    <link href="{{ url_for('static', filename='js/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet" />
+
+		<script src="{{ url_for('static', filename='js/jquery-1.10.2.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery.metisMenu.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/Lightweight-Chart/jquery.chart.js') }}"></script>  
+		<script src="{{ url_for('static', filename='js/morris/raphael-2.1.0.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/morris/morris.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/easypiechart.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/easypiechart-data.js') }}"></script>
+	    
+	    <script src="{{ url_for('static', filename='js/dataTables/jquery.dataTables.js') }}"></script>
+	    <script src="{{ url_for('static', filename='js/dataTables/dataTables.bootstrap.js') }}"></script>
+	    <script>
+	            $(document).ready(function () {
+	                $('#dataTables-example').dataTable();
+	            });
+	    </script>
+	    <script src="{{ url_for('static', filename='js/custom-scripts.js') }}"></script>
 	</head>
 
 <body>
@@ -20,7 +43,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><i class="fa fa-gear"></i> ApiRunner</a>
+					<a class="navbar-brand" href="{{url_for('index')}}"><i class="fa fa-gear"></i> ApiRunner</a>
 				</div>
 
 				<ul class="nav navbar-top-links navbar-right">               
@@ -45,7 +68,6 @@
 			</nav>
 				<!--/. NAV TOP  -->
 				<nav class="navbar-default navbar-side" role="navigation">
-					<div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>
 						<div class="sidebar-collapse">
 							<ul class="nav" id="main-menu">
 								<li>

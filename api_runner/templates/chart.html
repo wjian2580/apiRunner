@@ -4,15 +4,6 @@
     ApiRunner-charts
 {% endblock %}
 
-{% block head %}  
-    <link href="{{url_for('static', filename='js/morris/morris-0.4.3.min.css') }}" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='css/font-awesome.css') }}" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='css/fonts.css') }}" rel='stylesheet' type='text/css' /> 
-    <link href="{{ url_for('static', filename='css/custom-styles.css') }}" rel="stylesheet" />
-{% endblock %}
-
-
 {% block content %}
     
 <div id="page-wrapper" >
@@ -78,16 +69,6 @@
     </div>
 <!-- /. PAGE WRAPPER  -->
 </div>
-
-    <script src="{{ url_for('static', filename='js/jquery-1.10.2.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery.metisMenu.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/custom-scripts.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/Lightweight-Chart/jquery.chart.js') }}"></script>  
-    <script src="{{ url_for('static', filename='js/morris/raphael-2.1.0.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/morris/morris.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/easypiechart.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/easypiechart-data.js') }}"></script>
 
 
 {% endblock %}

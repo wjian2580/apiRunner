@@ -4,19 +4,6 @@
     ApiRunner-AddProject
 {% endblock %}
 
-{% block head %}
-
-    <!-- Bootstrap Styles-->
-    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" />
-    <!-- FontAwesome Styles-->
-    <link href="{{ url_for('static', filename='css/font-awesome.css') }}" rel="stylesheet" />
-    <!-- Custom Styles-->
-    <link href="{{ url_for('static', filename='css/custom-styles.css') }}" rel="stylesheet" />
-    <!-- Google Fonts-->
-    <link href="{{ url_for('static', filename='css/fonts.css') }}" rel='stylesheet' type='text/css' />
-
-{% endblock %}
-
 {% block content %}
 
 <div id="page-wrapper" >
@@ -76,13 +63,5 @@
         </div>
     </div>
 </div>
-    <!-- jQuery Js -->
-    <script src="{{ url_for('static', filename='js/jquery-1.10.2.js') }}"></script>
-      <!-- Bootstrap Js -->
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <!-- Metis Menu Js -->
-    <script src="{{ url_for('static', filename='js/jquery.metisMenu.js') }}"></script>
-    <!-- Custom Js -->
-    <script src="{{ url_for('static', filename='js/custom-scripts.js') }}"></script>
     
 {% endblock %} 
