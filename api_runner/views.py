@@ -38,3 +38,8 @@ def report_list():
 @app.route('/api/settings/')
 def settings():
 	return render_template('settings.html')
+
+
+@app.route('/api/login/')
+def login():
+	return render_template('login.html')

@@ -1,97 +1,71 @@
-﻿{% extends "base.html" %}
-
-{% block title %}
-    ApiRunner-index
-{% endblock %}
-
-{% block content %}
-       
-        <div id="page-wrapper">
-            <div id="page-inner">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="page-header">
-                            项目概览 
-                        </h1>
+﻿{% extends "base.html" %} {% block title %} ApiRunner-index {% endblock %} {% block content %}
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-header">
+                        项目概览 
+                    </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-primary text-center no-boder bg-color-green green">
+                    <div class="panel-left pull-left green">
+                        <i class="fa fa-users fa-5x"></i>
                     </div>
-                </div>			
-
-                <div class="row">
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-green green">
-                            <div class="panel-left pull-left green">
-                                <i class="fa fa-users fa-5x"></i>
-                            </div>
-                            <div class="panel-right">
-								<h3>8,457</h3>
-                               <strong>Project Total</strong>
-                            </div>
-                        </div>
+                    <div class="panel-right">
+                        <h3>87</h3>
+                        <strong>Projects</strong>
                     </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-blue">
-                              <div class="panel-left pull-left blue">
-                                <i class="fa fa-puzzle-piece fa-5x"></i>
-								</div>
-                                
-                            <div class="panel-right">
-							<h3>52,160 </h3>
-                               <strong>Module Total</strong>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-red">
-                            <div class="panel-left pull-left red">
-                                <i class="fa fa fa-bug fa-5x"></i>
-                               
-                            </div>
-                            <div class="panel-right">
-							 <h3>15,823 </h3>
-                               <strong> Case Total </strong>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-brown">
-                            <div class="panel-left pull-left brown">
-                                <i class="fa fa-suitcase fa-5x"></i>
-                                
-                            </div>
-                            <div class="panel-right">
-							<h3>36,752 </h3>
-                             <strong>Suite Total</strong>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-				
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Bar Chart Example
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-bar-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-				<div class="row">
-				<div class="col-md-12">
-				
-					</div>		
-				</div> 	 
                 </div>
             </div>
-            <!-- /. PAGE INNER  -->
+            <div class="col-md-3">
+                <div class="panel panel-primary text-center no-boder bg-color-blue">
+                    <div class="panel-left pull-left blue">
+                        <i class="fa fa-puzzle-piece fa-5x"></i>
+                    </div>
+                    <div class="panel-right">
+                        <h3>5</h3>
+                        <strong>Modules</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-primary text-center no-boder bg-color-red">
+                    <div class="panel-left pull-left red">
+                        <i class="fa fa fa-bug fa-5x"></i>
+                    </div>
+                    <div class="panel-right">
+                        <h3>12</h3>
+                        <strong> Cases</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-primary text-center no-boder bg-color-brown">
+                    <div class="panel-left pull-left brown">
+                        <i class="fa fa-suitcase fa-5x"></i>
+                    </div>
+                    <div class="panel-right">
+                        <h3>35</h3>
+                        <strong>Suites</strong>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /. PAGE WRAPPER  -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Bar Chart Example
+                    </div>
+                    <div class="panel-body">
+                        <div id="morris-bar-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
+</div>
 {% endblock %}

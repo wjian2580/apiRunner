@@ -1,69 +1,61 @@
-{% extends "base.html" %}
-
-{% block title %}
-    ApiRunner-AddProject
-{% endblock %}
-
-{% block content %}
-
-<div id="page-wrapper" >
+{% extends "base.html" %} {% block title %} ApiRunner-AddProject {% endblock %} {% block content %}
+<div id="page-wrapper">
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="page-header">
+                <h2 class="page-header">
                     添加模块 
-                </h1>
+                </h2>
             </div>
-        </div> 
-         <!-- /. ROW  -->
+        </div>
+        <!-- /. ROW  -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="margin-left: 5px">
                         模块信息
                     </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <br>
-                            <form role="form">
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon">模块名称</span>
-                                    <input type="text" class="form-control" placeholder="Project Name">
-                                </div>
-                                <div class="form-group input-group" >
-                                    <span class="input-group-addon">模块名称</span>
-                                    <select name="belong_project" class="form-control">
-                                        <option value="请选择">请选择</option>
-                                    </select>
-                                </div>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon">测试人员</span>
-                                    <input type="text" class="form-control" placeholder="Tester">
-                                </div>        
-                                <div class="form-group">
-                                    <label>简要描述</label>
-                                    <textarea class="form-control" rows="3" placeholder="say something"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>其他信息</label>
-                                    <textarea class="form-control" rows="3" placeholder="say something"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-default">提交</button>
-                                <button type="reset" class="btn btn-default">重置</button>
-                            </form>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <br>
+                                <form role="form">
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon">模块名称</span>
+                                        <input type="text" class="form-control" placeholder="Module Name">
+                                    </div>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon">所属项目</span>
+                                        <select name="belong_project" class="form-control">
+                                            <option value="请选择">请选择</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon">测试人员</span>
+                                        <input type="text" class="form-control" placeholder="Tester">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>简要描述</label>
+                                        <textarea class="form-control" rows="3" placeholder="say something"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>其他信息</label>
+                                        <textarea class="form-control" rows="3" placeholder="say something"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-default">提交</button>
+                                    <button type="reset" class="btn btn-default">重置</button>
+                                </form>
+                            </div>
+                            <!-- /.col-lg-6 (nested) -->
                         </div>
-                        <!-- /.col-lg-6 (nested) -->
+                        <!-- /.row (nested) -->
                     </div>
-                    <!-- /.row (nested) -->
+                    <!-- /.panel-body -->
                 </div>
-                <!-- /.panel-body -->
-                </div>
-            <!-- /.panel -->
+                <!-- /.panel -->
             </div>
-        <!-- /.col-lg-12 -->
+            <!-- /.col-lg-12 -->
         </div>
     </div>
 </div>
-    
-{% endblock %} 
+{% endblock %}

@@ -1,12 +1,5 @@
-﻿{% extends "base.html" %}
-
-{% block title %}
-    ApiRunner-charts
-{% endblock %}
-
-{% block content %}
-    
-<div id="page-wrapper" >
+﻿{% extends "base.html" %} {% block title %} ApiRunner-charts {% endblock %} {% block content %}
+<div id="page-wrapper">
     <div id="page-inner">
         <div class="row">
             <div class="col-md-12">
@@ -14,11 +7,10 @@
                 Charts <small>Show up your stats</small>
                 </h1>
             </div>
-        </div> 
+        </div>
         <!-- /. ROW  -->
-
-        <div class="row"> 
-            <div class="col-md-6 col-sm-12 col-xs-12">                     
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Bar Chart
@@ -26,49 +18,44 @@
                     <div class="panel-body">
                         <div id="morris-bar-chart"></div>
                     </div>
-                </div>            
+                </div>
             </div>
-            <div class="col-md-6 col-sm-12 col-xs-12">                     
+            <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    Area Chart
+                        Area Chart
                     </div>
                     <div class="panel-body">
                         <div id="morris-area-chart"></div>
                     </div>
-                </div>            
-            </div> 
-
+                </div>
+            </div>
         </div>
         <!-- /. ROW  -->
-        <div class="row">                     
-
-            <div class="col-md-6 col-sm-12 col-xs-12">                     
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    Line Chart
+                        Line Chart
                     </div>
                     <div class="panel-body">
                         <div id="morris-line-chart"></div>
                     </div>
-                </div>            
+                </div>
             </div>
-            <div class="col-md-6 col-sm-12 col-xs-12">                     
+            <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    Donut Chart
+                        Donut Chart
                     </div>
-                    <div class="panel-body">                            
+                    <div class="panel-body">
                         <div id="morris-donut-chart"></div>
                     </div>
-                </div>            
-            </div> 
-
+                </div>
+            </div>
         </div>
-    <!-- /. PAGE INNER  -->
+        <!-- /. PAGE INNER  -->
     </div>
-<!-- /. PAGE WRAPPER  -->
+    <!-- /. PAGE WRAPPER  -->
 </div>
-
-
 {% endblock %}
