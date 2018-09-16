@@ -32,8 +32,21 @@ class ModuleInfo(db.Model):
     dev = db.Column(db.String(50))
     create_time = db.Column(db.DateTime)
     update_time = db.Column(db.DateTime)
-    project_id = db.Column(db.String(50), db.ForeignKey('user_info.id')
-    test = db.Column()
+    project_id = db.Column(db.Integer, db.ForeignKey('user_info.id'))
+    case_id = db.relationship('case_info', backref='module_info')
+
+
+class CaseInfo(db.Model):
+
+    id = db.Column(db.String(50),primary_key=True)
+    case_name = db.Column(db.String(50),unique=True)
+    author = db.Column(db.String(50))
+    create_time = db.Column(db.DateTime)
+    update_time = db.Column(db.DateTime)
+    module_id = db.Column(db.Integer,db.ForeignKey('module_info.id'))
+
+    
+
 
 
 
