@@ -3,16 +3,20 @@ from datetime import datetime
 from flask_login import UserMixin
 
 
-class UserInfo(db.Model, UserMixin):
+class User(db.Model, UserMixin):
+
+    __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True)
-    password = db.Column(db.String(50))
+    password = db.Column(db.String(200))
     create_time = db.Column(db.DateTime)
     update_time = db.Column(db.DateTime)
 
 
 class ProjectInfo(db.Model):
+
+    __tablename__ = 'project_info'
 
     id = db.Column(db.Integer, primary_key=True)
     project_name = db.Column(db.String(50), unique=True)
@@ -22,10 +26,12 @@ class ProjectInfo(db.Model):
     desc = db.Column(db.String(50))
     create_time = db.Column(db.DateTime)
     update_time = db.Column(db.DateTime)
-    module_id = db.relationship('module_info', backref='project_info')
+    modules = db.relationship('ModuleInfo', backref='project_info')
 
 
 class ModuleInfo(db.Model):
+
+    __tablename__ = 'module_info'
 
     id = db.Column(db.Integer, primary_key=True)
     module_name = db.Column(db.String(50), unique=True)
@@ -33,11 +39,13 @@ class ModuleInfo(db.Model):
     dev = db.Column(db.String(50))
     create_time = db.Column(db.DateTime)
     update_time = db.Column(db.DateTime)
-    project_id = db.Column(db.Integer, db.ForeignKey('user_info.id'))
-    case_id = db.relationship('case_info', backref='module_info')
+    project_id = db.Column(db.Integer, db.ForeignKey('project_info.id'))
+    cases = db.relationship('CaseInfo', backref='module_info')
 
 
 class CaseInfo(db.Model):
+
+    __tablename__ = 'case_info'
 
     id = db.Column(db.String(50),primary_key=True)
     case_name = db.Column(db.String(50),unique=True)

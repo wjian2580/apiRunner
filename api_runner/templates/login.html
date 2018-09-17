@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{{title}}</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <script src="{{ url_for('static', filename='js/jquery-1.10.2.js') }}"></script>
     <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" />
     <link href="{{ url_for('static', filename='iconfont/style.css') }}" rel="stylesheet" />
     <style>
@@ -102,6 +103,12 @@
     <div class="container wrap1" style="height:450px;">
         <h2 class="mg-b20 text-center">Welcome to ApiRunner</h2>
         <div class="col-sm-8 col-md-5 center-auto pd-sm-50 pd-xs-20 main_content">
+          {% for message in get_flashed_messages() %}
+              <div class="alert alert-warning">
+                  <button type="button" class="close" data-dismiss="alert"></button>
+                  {{ message }}
+              </div>
+          {% endfor %}
             <p class="text-center font16">用户登录</p>
             <form action="{{url_for('login')}}" role="form" method="POST" id="login_form">
                 {{form.hidden_tag()}}

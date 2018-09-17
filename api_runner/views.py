@@ -1,15 +1,16 @@
-from flask import request,render_template
-from werkzeug.security import check_password_hash
-from api_runner import app,lm
-from .forms import LoginForm
-from .models import UserInfo,CaseInfo,ProjectInfo,ModuleInfo
+from flask import request,render_template,redirect,url_for,flash
+from werkzeug.security import check_password_hash,generate_password_hash
+from api_runner import app,lm,db
+from datetime import datetime
+from .forms import LoginForm,ChangePasswordForm
+from .models import User,CaseInfo,ProjectInfo,ModuleInfo
 from flask_login import login_required,current_user,logout_user,login_user
 
 
 
 @lm.user_loader
 def load_user(id):
-	return UserInfo.query.get(int(id))
+	return User.query.get(int(id))
 
 @app.route('/')
 @app.route('/index/')
@@ -60,14 +61,40 @@ def settings():
 
 @app.route('/api/login/', methods=['GET','POST'])
 def login():
-	
 	form = LoginForm()
 	if form.validate_on_submit():
 		username = request.form.get('username',None)
-		password = request.form.get('username',None)
+		password = request.form.get('password',None)
 		remember_me = request.form.get('remember_me',None)
-		user = User.query.filter_by(UserInfo.username=username).first()
-		if  check_password_hash(user.password,password):
+		user = User.query.filter(username==username).first()
+		if check_password_hash(user.password,password):
 			login_user(user, remember=remember_me)
 			return redirect(url_for('index'))
-	return redirect(url_for('login',title='Sign In',form=form))
+	flash('用户名或密码错误')
+	return render_template('login.html',title='Sign In',form=form)
+
+@app.route('/api/logout/')
+@login_required
+def logout():
+	logout_user()
+	return redirect(url_for('login'))
+
+@app.route('/api/change_password/',methods=['GET','POST'])
+@login_required
+def change_password():
+	form = ChangePasswordForm()	
+	if form.validate_on_submit():
+		old_password = request.form.get('old_password',None)
+		new_password = request.form.get('new_password',None)
+		if check_password_hash(current_user.password, old_password):
+			new_password = generate_password_hash(new_password)
+			current_user.password = new_password
+			current_user.update_time = datetime.now()
+			db.session.add(current_user)
+			db.session.commit()
+			flash('密码修改成功')
+			return redirect(url_for('index'))
+		else:
+			flash('原密码输入错误')
+	return render_template('change_password.html',title='ApiRunner-Change-Password',form=form)
+
