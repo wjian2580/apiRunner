@@ -8,6 +8,8 @@ app.config.from_object('config')
 app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
 lm = LoginManager()
+lm.session_protection='strong'
+lm.login_view='login'
 lm.init_app(app)
 
 from api_runner import views
