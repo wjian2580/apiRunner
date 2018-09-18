@@ -2,7 +2,7 @@ from flask import request,render_template,redirect,url_for,flash
 from werkzeug.security import check_password_hash,generate_password_hash
 from api_runner import app,lm,db
 from datetime import datetime
-from .forms import LoginForm,ChangePasswordForm
+from .forms import LoginForm,ChangePasswordForm,AddProjectForm
 from .models import User,CaseInfo,ProjectInfo,ModuleInfo
 from flask_login import login_required,current_user,logout_user,login_user
 
@@ -23,10 +23,30 @@ def index():
 def project_list():
 	return render_template('project_list.html')
 
-@app.route('/api/add_project/')
+@app.route('/api/add_project/',methods=['POST','GET'])
 @login_required
 def add_project():
-	return render_template('add_project.html')
+	form = AddProjectForm()
+	if form.validate_on_submit():
+		project_name = request.form.get('project_name',None)
+		manager = request.form.get('manager',None)
+		tester = request.form.get('tester',None)
+		dev = request.form.get('dev',None)
+		desc = request.form.get('desc',None)
+		create_time = datetime.now()
+		update_time = datetime.now()
+		project = ProjectInfo(
+			project_name=project_name,
+			manager=manager,
+			tester=tester,
+			dev=dev,
+			desc=desc,
+			create_time=create_time,
+			update_time=update_time)
+		db.session.add(project)
+		db.session.commit()
+		return redirect(url_for('project_list'))
+	return render_template('add_project.html',form=form)
 
 @app.route('/api/module_list/')
 @login_required
@@ -70,7 +90,8 @@ def login():
 		if check_password_hash(user.password,password):
 			login_user(user, remember=remember_me)
 			return redirect(url_for('index'))
-	flash('用户名或密码错误')
+		else:
+			flash('用户名或密码错误')
 	return render_template('login.html',title='Sign In',form=form)
 
 @app.route('/api/logout/')
@@ -95,6 +116,6 @@ def change_password():
 			flash('密码修改成功')
 			return redirect(url_for('index'))
 		else:
-			flash('原密码输入错误')
+			flash('当前密码输入错误')
 	return render_template('change_password.html',title='ApiRunner-Change-Password',form=form)
 
