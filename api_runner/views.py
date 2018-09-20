@@ -21,28 +21,24 @@ def index():
 @app.route('/api/project_list/')
 @login_required
 def project_list():
-	return render_template('project_list.html')
+	projects = ProjectInfo.query.all()
+	import pdb
+	pdb.set_trace()
+	return render_template('project_list.html',projects=projects)
 
 @app.route('/api/add_project/',methods=['POST','GET'])
 @login_required
 def add_project():
 	form = AddProjectForm()
 	if form.validate_on_submit():
-		project_name = request.form.get('project_name',None)
-		manager = request.form.get('manager',None)
-		tester = request.form.get('tester',None)
-		dev = request.form.get('dev',None)
-		desc = request.form.get('desc',None)
-		create_time = datetime.now()
-		update_time = datetime.now()
 		project = ProjectInfo(
-			project_name=project_name,
-			manager=manager,
-			tester=tester,
-			dev=dev,
-			desc=desc,
-			create_time=create_time,
-			update_time=update_time)
+			project_name=form.project_name.data,
+			manager=form.manager.data,
+			tester=form.tester.data,
+			dev=form.dev.data,
+			desc=form.desc.data,
+			create_time=datetime.now(),
+			update_time=datetime.now())
 		db.session.add(project)
 		db.session.commit()
 		return redirect(url_for('project_list'))

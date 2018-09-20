@@ -34,7 +34,7 @@
                                         <button type="button" class="btn btn-xs" style="margin-right: 5px">批量删除</button>
                                         <button type="button" class="btn btn-xs" onclick="">批量运行</button>
                                     </div>
-                                    {% for project in projects %}                                       
+                                    {% for index,project in enumerate(projects) %}                                       
                                     <tr class="odd gradeX">
                                         <td>
                                             <label>
