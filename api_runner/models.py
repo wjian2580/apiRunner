@@ -65,6 +65,15 @@ class ConfigInfo(db.Model):
     config_name = db.Column(db.String(50),unique=True)
 
 
+class EnvInfo(db.Model):
+
+    __tablename__ = 'env_info'
+
+    id = db.Column(db.Integer,primary_key=True)
+    env_name = db.Column(db.String(50),unique=True)
+    base_url = db.Column(db.String(50))
+    
+
     
 
 
