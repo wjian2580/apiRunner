@@ -89,7 +89,6 @@ def report_list():
 def settings():
 	return render_template('settings.html')
 
-
 @app.route('/api/login/', methods=['GET','POST'])
 def login():
 	form = LoginForm()

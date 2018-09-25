@@ -29,5 +29,13 @@ class AddModuleForm(FlaskForm):
 	belong_project = SelectField('所属项目',choices=[])
 	tester = StringField('测试人员')
 	desc = TextAreaField('简要描述')
+
+class AddCaseForm(FlaskForm):
+
+	case_name = StringField('用例名称')
+	belong_project = SelectField('所属项目')
+	belong_module = SelectField('所属项目')
+	case_depend_on = SelectField('所属项目')
+	author = StringField('所属项目')
 		
 
