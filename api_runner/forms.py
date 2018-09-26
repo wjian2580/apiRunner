@@ -1,11 +1,11 @@
 from wtforms import StringField,BooleanField,PasswordField,SubmitField,TextAreaField,SelectField
-from flask_wtf import FlaskForm,Form
-from wtforms.validators import EqualTo,Required
+from flask_wtf import FlaskForm
+from wtforms.validators import EqualTo,Required,DataRequired
 
 class LoginForm(FlaskForm):
 
-	username = StringField(validators=[Required()])
-	password = PasswordField(validators=[Required()])
+	username = StringField(validators=[DataRequired()])
+	password = PasswordField(validators=[DataRequired()])
 	remember_me = BooleanField('记住登录信息', default=False)
 
 
@@ -25,7 +25,7 @@ class AddProjectForm(FlaskForm):
 
 class AddModuleForm(FlaskForm):
 
-	module_name = StringField('模块名称')
+	module_name = StringField('模块名称',[Required()])
 	belong_project = SelectField('所属项目',choices=[])
 	tester = StringField('测试人员')
 	desc = TextAreaField('简要描述')

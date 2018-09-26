@@ -108,7 +108,7 @@ def settings():
 
 @app.route('/api/login/', methods=['GET','POST'])
 def login():
-	form = LoginForm()
+	form = LoginForm(request.form)
 	if form.validate_on_submit():
 		username = request.form.get('username',None)
 		password = request.form.get('password',None)

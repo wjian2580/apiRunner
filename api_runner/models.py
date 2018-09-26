@@ -38,7 +38,7 @@ class ModuleInfo(db.Model):
     __tablename__ = 'module_info'
 
     id = db.Column(db.Integer, primary_key=True)
-    module_name = db.Column(db.String(50), unique=True)
+    module_name = db.Column(db.String(50), unique=True, nullable=False)
     tester = db.Column(db.String(50))
     desc = db.Column(db.String(50))
     create_time = db.Column(db.DateTime)
