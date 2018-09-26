@@ -34,8 +34,9 @@ class AddCaseForm(FlaskForm):
 
 	case_name = StringField('用例名称')
 	belong_project = SelectField('所属项目')
-	belong_module = SelectField('所属项目')
-	case_depend_on = SelectField('所属项目')
-	author = StringField('所属项目')
-		
+	belong_module = SelectField('所属模块')
+	case_depend_on = SelectField('依赖用例')
+	pre_condition = SelectField('前置条件')
+	author = StringField('创建者')
+	url = StringField('url')
 

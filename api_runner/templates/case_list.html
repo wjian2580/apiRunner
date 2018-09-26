@@ -22,10 +22,11 @@
                                             <input id="All" type="checkbox">
                                         </th>
                                         <th>序号</th>
-                                        <th>项目名称</th>
-                                        <th>负责人</th>
-                                        <th>测试人员</th>
-                                        <th>模块/用例/配置</th>
+                                        <th>用例名称</th>
+                                        <th>所属项目</th>
+                                        <th>所属模块</th>
+                                        <th>创建者</th>
+                                        <th>创建时间</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
@@ -34,17 +35,19 @@
                                         <button type="button" class="btn btn-xs" style="margin-right: 5px">批量删除</button>
                                         <button type="button" class="btn btn-xs" onclick="">批量运行</button>
                                     </div>
+                                    {% for case in cases %}
                                     <tr class="odd gradeX">
                                         <td>
                                             <label>
-                                                <input type="checkbox" name="project">
+                                                <input type="checkbox" name="case">
                                             </label>
                                         </td>
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 4.0</td>
-                                        <td>Win 95+</td>
-                                        <td>4</td>
-                                        <td>X</td>
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ case.case_name }}</td>
+                                        <td>{{ case.project.project_name }}</td>
+                                        <td>{{ case.module.module_name }}</td>
+                                        <td>{{ case.author }}</td>
+                                        <td>{{ case.create_time }}</td>
                                         <td>
                                             <div class="btn-group btn-group-xs">
                                                 <button type="button" class="btn btn-default btn-xs text-primary" data-toggle="tooltip" title="编辑">
@@ -59,31 +62,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr class="odd gradeX">
-                                        <td>
-                                            <label>
-                                                <input type="checkbox" name="project">
-                                            </label>
-                                        </td>
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 4.0</td>
-                                        <td>Win 95+</td>
-                                        <td>4</td>
-                                        <td>X</td>
-                                        <td>
-                                            <div class="btn-group btn-group-xs">
-                                                <button type="button" class="btn btn-default btn-xs text-primary" data-toggle="tooltip" title="编辑">
-                                                    <span class="glyphicon glyphicon-pencil"></span>
-                                                </button>
-                                                <button type="button" class="btn btn-default btn-xs text-primary" data-toggle="tooltip" title="删除">
-                                                    <span class="glyphicon glyphicon-trash"></span>
-                                                </button>
-                                                <button type="button" class="btn btn-default btn-xs text-primary" data-toggle="tooltip" title="运行">
-                                                    <span class="glyphicon glyphicon-play"></span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>

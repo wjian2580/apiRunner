@@ -1,8 +1,8 @@
-from flask import request,render_template,redirect,url_for,flash
+from flask import request,render_template,redirect,url_for,flash,jsonify
 from werkzeug.security import check_password_hash,generate_password_hash
 from api_runner import app,lm,db
 from datetime import datetime
-from .forms import LoginForm,ChangePasswordForm,AddProjectForm,AddModuleForm
+from .forms import LoginForm,ChangePasswordForm,AddProjectForm,AddModuleForm,AddCaseForm
 from .models import User,CaseInfo,ProjectInfo,ModuleInfo
 from flask_login import login_required,current_user,logout_user,login_user
 
@@ -18,10 +18,13 @@ def load_user(id):
 def index():
 	return render_template('index.html')
 
+
 @app.route('/api/project_list/')
 @login_required
 def project_list():
 	projects = ProjectInfo.query.all()
+	if request.is_xhr:
+		return jsonify([(project.id,project.project_name) for project in projects])
 	return render_template('project_list.html',projects=projects)
 
 @app.route('/api/add_project/',methods=['POST','GET'])
@@ -47,6 +50,18 @@ def module_list():
 	modules = ModuleInfo.query.all()
 	return render_template('module_list.html',modules=modules)
 
+@app.route('/api/modules/<int:project_id>')
+@login_required
+def modules(project_id):
+	modules = ProjectInfo.query.get(project_id).modules
+	return jsonify([(module.id,module.module_name) for module in modules])
+
+@app.route('/api/cases/<int:module_id>')
+@login_required
+def cases(module_id):
+	cases = ModuleInfo.query.get(module_id).cases
+	return jsonify([(case.id,case.case_name) for case in cases])
+
 @app.route('/api/add_module/',methods=['POST','GET'])
 @login_required
 def add_module():
@@ -66,7 +81,7 @@ def add_module():
 		return redirect(url_for('module_list'))
 	projects = ProjectInfo.query.all()
 	select_values = [(project.id,project.project_name) for project in projects]
-	form.belong_project.choices += select_values
+	form.belong_project.choices = select_values
 	return render_template('add_module.html',form=form,projects=projects)
 
 @app.route('/api/case_list/')
@@ -74,10 +89,12 @@ def add_module():
 def case_list():
 	return render_template('case_list.html')
 
-@app.route('/api/add_case/')
+@app.route('/api/add_case/',methods=['POST','GET'])
 @login_required
 def add_case():
-	return render_template('add_case.html')
+	form = AddCaseForm()
+	projects = ProjectInfo.query.all()
+	return render_template('add_case.html',projects=projects)
 
 @app.route('/api/report_list/')
 @login_required

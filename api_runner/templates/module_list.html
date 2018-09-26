@@ -26,6 +26,7 @@
                                         <th>所属项目</th>
                                         <th>测试人员</th>
                                         <th>用例/配置</th>
+                                        <th>创建时间</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
@@ -46,6 +47,7 @@
                                         <td>{{module.project_info.project_name}}</td>
                                         <td>{{module.tester}}</td>
                                         <td>{{module.cases|length}}</td>
+                                        <td>{{module.create_time}}</td>
                                         <td>
                                             <div class="btn-group btn-group-xs">
                                                 <button type="button" class="btn btn-default btn-xs text-primary" data-toggle="tooltip" title="编辑">

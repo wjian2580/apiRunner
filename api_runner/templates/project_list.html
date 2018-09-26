@@ -25,6 +25,7 @@
                                         <th>项目名称</th>
                                         <th>负责人</th>
                                         <th>模块/用例/配置</th>
+                                        <th>创建时间</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
@@ -44,6 +45,7 @@
                                         <td>{{ project.project_name }}</td>
                                         <td>{{ project.manager }}</td>
                                         <td>{{ project.modules|length }}/{{project.cases|length}}</td>
+                                        <td>{{ project.create_time }}</td>
                                         <td>
                                             <div class="btn-group btn-group-xs">
                                                 <button type="button" class="btn btn-default btn-xs text-primary" data-toggle="tooltip" title="编辑">

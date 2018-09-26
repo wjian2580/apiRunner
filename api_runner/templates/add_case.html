@@ -16,15 +16,15 @@
                         <div class="row">
                             <ul class="nav nav-tabs" id="mytags" style="margin-left: 10px">
                                 <li role="presentation" class="active"><a href="#message" data-toggle="tab">Messages</a></li>
-                                <li role="presentation"><a href="#request">request</a></li>
                                 <li role="presentation"><a href="#variables">variables/parameters/hooks</a></li>
+                                <li role="presentation"><a href="#request">request</a></li>
                                 <li role="presentation"><a href="#validate">extract/validate</a></li>
                             </ul>
-                            <div id="myTabContent" class="tab-content">
-                                <div class="tab-pane active" id="message">
-                                    <div class="col-lg-8">
-                                        <br>
-                                        <form role="form">
+                            <form role="form" action="">
+                                <div id="myTabContent" class="tab-content">
+                                    <div class="tab-pane active" id="message">
+                                        <div class="col-lg-6">
+                                            <br>
                                             <div class="form-group input-group">
                                                 <span class="input-group-addon">用例名称</span>
                                                 <input class="form-control" placeholder="Case Name">
@@ -57,102 +57,11 @@
                                             </div>
                                             <button type="submit" class="btn btn-default" style="margin: 10px 10px 10px 80px">提交</button>
                                             <button type="reset" class="btn btn-default">重置</button>
-                                        </form>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="tab-pane" id="request">
-                                    <div class="col-lg-8">
-                                        <br>
-                                        <form role="form">
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon">URL</span>
-                                                <input class="form-control" placeholder="/api/login/">
-                                                <span class="input-group-addon">Method</span>
-                                                <select class="form-control" name="method" id="method">
-                                                    <option>POST</option>
-                                                    <option>GET</option>
-                                                    <option>PUT</option>
-                                                    <option>DELETE</option>
-                                                </select>
-                                                <span class="input-group-addon">Type</span>
-                                                <select class="form-control" name="DataType" id="DataType">
-                                                    <option>data</option>
-                                                    <option>json</option>
-                                                    <option>params</option>
-                                                </select>
-                                            </div>
-                                            <input type="button" class="btn btn-info btn-sm" onclick="addTr('reqData')" value="添加">
-                                            <input type="button" class="btn btn-danger btn-sm" onclick="delTr()" value="删除">
-                                            <table id="tab" class="table table-striped table-bordered table-hover">
-                                                <caption>data</caption>
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            <input id="dataSelect" type="checkbox" onclick="allCheck('dataSelect')">
-                                                        </th>
-                                                        <th>Type</th>
-                                                        <th>Key</th>
-                                                        <th>Value</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="reqData">
-                                                    <tr>
-                                                        <td>
-                                                            <input type="checkbox">
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control">
-                                                                <option>string</option>
-                                                                <option>int</option>
-                                                                <option>float</option>
-                                                                <option>boolean</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <input style="margin-top: 4px">
-                                                        </td>
-                                                        <td>
-                                                            <input style="margin-top: 4px">
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <input type="button" class="btn btn-info btn-sm" onclick="addTr('reqHeaders')" value="添加">
-                                            <input type="button" class="btn btn-danger btn-sm" onclick="delTr()" value="删除">
-                                            <table id="tab" class="table table-striped table-bordered table-hover">
-                                                <caption>headers</caption>
-                                                <thead>
-                                                    <tr>
-                                                        <th>
-                                                            <input id="headerSelect" type="checkbox" onclick="allCheck('headerSelect')">
-                                                        </th>
-                                                        <th>Key</th>
-                                                        <th>Value</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="reqHeaders">
-                                                    <tr>
-                                                        <td>
-                                                            <input type="checkbox">
-                                                        </td>
-                                                        <td>
-                                                            <input>
-                                                        </td>
-                                                        <td>
-                                                            <input>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <button type="submit" class="btn btn-default" style="margin: 10px 10px 10px 80px">提交</button>
-                                            <button type="reset" class="btn btn-default">重置</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="variables">
-                                    <div class="col-lg-8">
-                                        <br>
-                                        <form role="form">
+                                    <div class="tab-pane" id="variables">
+                                        <div class="col-lg-8">
+                                            <br>
                                             <input type="button" class="btn btn-info btn-sm" onclick="addTr('reqVars')" value="添加">
                                             <input type="button" class="btn btn-danger btn-sm" onclick="delTr()" value="删除">
                                             <table id="tab" class="table table-striped table-bordered table-hover">
@@ -245,13 +154,98 @@
                                             </table>
                                             <button type="submit" class="btn btn-default" style="margin: 10px 10px 10px 80px">提交</button>
                                             <button type="reset" class="btn btn-default">重置</button>
-                                        </form>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="tab-pane" id="validate">
-                                    <div class="col-lg-8">
-                                        <br>
-                                        <form role="form">
+                                    <div class="tab-pane" id="request">
+                                        <div class="col-lg-8">
+                                            <br>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">URL</span>
+                                                <input class="form-control" placeholder="/api/login/">
+                                                <span class="input-group-addon">Method</span>
+                                                <select class="form-control" name="method" id="method">
+                                                    <option>POST</option>
+                                                    <option>GET</option>
+                                                    <option>PUT</option>
+                                                    <option>DELETE</option>
+                                                </select>
+                                                <span class="input-group-addon">Type</span>
+                                                <select class="form-control" name="DataType" id="DataType">
+                                                    <option>data</option>
+                                                    <option>json</option>
+                                                    <option>params</option>
+                                                </select>
+                                            </div>
+                                            <input type="button" class="btn btn-info btn-sm" onclick="addTr('reqData')" value="添加">
+                                            <input type="button" class="btn btn-danger btn-sm" onclick="delTr()" value="删除">
+                                            <table id="tab" class="table table-striped table-bordered table-hover">
+                                                <caption>data</caption>
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            <input id="dataSelect" type="checkbox" onclick="allCheck('dataSelect')">
+                                                        </th>
+                                                        <th>Type</th>
+                                                        <th>Key</th>
+                                                        <th>Value</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="reqData">
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox">
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control">
+                                                                <option>string</option>
+                                                                <option>int</option>
+                                                                <option>float</option>
+                                                                <option>boolean</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input style="margin-top: 4px">
+                                                        </td>
+                                                        <td>
+                                                            <input style="margin-top: 4px">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <input type="button" class="btn btn-info btn-sm" onclick="addTr('reqHeaders')" value="添加">
+                                            <input type="button" class="btn btn-danger btn-sm" onclick="delTr()" value="删除">
+                                            <table id="tab" class="table table-striped table-bordered table-hover">
+                                                <caption>headers</caption>
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            <input id="headerSelect" type="checkbox" onclick="allCheck('headerSelect')">
+                                                        </th>
+                                                        <th>Key</th>
+                                                        <th>Value</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="reqHeaders">
+                                                    <tr>
+                                                        <td>
+                                                            <input type="checkbox">
+                                                        </td>
+                                                        <td>
+                                                            <input>
+                                                        </td>
+                                                        <td>
+                                                            <input>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <button type="submit" class="btn btn-default" style="margin: 10px 10px 10px 80px">提交</button>
+                                            <button type="reset" class="btn btn-default">重置</button>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="validate">
+                                        <div class="col-lg-8">
+                                            <br>
                                             <input type="button" class="btn btn-info btn-sm" onclick="addTr('reqExtracts')" value="添加">
                                             <input type="button" class="btn btn-danger btn-sm" onclick="delTr()" value="删除">
                                             <table id="tab" class="table table-striped table-bordered table-hover">
@@ -333,10 +327,10 @@
                                             </table>
                                             <button type="submit" class="btn btn-default" style="margin: 10px 10px 10px 80px">提交</button>
                                             <button type="reset" class="btn btn-default">重置</button>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                         <!-- /.col-lg-6 (nested) -->
                     </div>
@@ -469,9 +463,13 @@ function allCheck(id) {
     box.parent().parent().parent().parent().find('input:checkbox').prop('checked', flag)
 
 }
+
+
+
 $(function() {
     $(".selectList").each(function() {
-        var url = "static/json/area.json";
+        var url = "/api/project/";
+        
         var areaJson;
         var temp_html;
         var oProvince = $(this).find(".province");
