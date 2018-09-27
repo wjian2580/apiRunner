@@ -93,8 +93,25 @@ def case_list():
 @login_required
 def add_case():
 	form = AddCaseForm()
+	if form.validate_on_submit():
+		pass
 	projects = ProjectInfo.query.all()
-	return render_template('add_case.html',projects=projects)
+	project_choices = [(project.id,project.project_name) for project in projects]
+	form.belong_project.choices = project_choices
+	form.request_method.choices = [('GET','GET'),('POST','POST'),('PUT','PUT'),('DELETE','DELETE')]
+	form.request_type.choices = [('data','data'),('json','json'),('params','params')]
+	form.belong_module.choices = []
+	form.case_depend_on.choices = [('0','无依赖')]
+	form.pre_condition.choices = [('0','无前置条件')]
+	if projects:
+		modules = projects[0].modules
+		module_choices = [(module.id,module.module_name) for module in modules]
+		form.belong_module.choices = module_choices
+		if modules:
+			cases = modules[0].cases
+			case_choices = [(case.id,case.case_name) for case in cases]
+			form.case_depend_on.choices += case_choices
+	return render_template('add_case.html',form=form)
 
 @app.route('/api/report_list/')
 @login_required

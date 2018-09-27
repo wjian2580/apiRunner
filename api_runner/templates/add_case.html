@@ -26,34 +26,22 @@
                                         <div class="col-lg-6">
                                             <br>
                                             <div class="form-group input-group">
-                                                <span class="input-group-addon">用例名称</span>
-                                                <input class="form-control" placeholder="Case Name">
+                                                <span class="input-group-addon">用例名称</span> {{ form.case_name(class_="form-control",placeholder="Case name") }}
                                             </div>
                                             <div class="form-group input-group">
-                                                <span class="input-group-addon">所属项目</span>
-                                                <select name="belong_project" class="form-control">
-                                                    <option value="请选择">请选择</option>
-                                                </select>
+                                                <span class="input-group-addon">所属项目</span> {{ form.belong_project(class_="form-control",id="belong_project",onchange="changeProject()") }}
                                             </div>
                                             <div class="form-group input-group">
-                                                <span class="input-group-addon">所属模块</span>
-                                                <select name="belong_module" class="form-control">
-                                                    <option value="请选择">请选择</option>
-                                                </select>
+                                                <span class="input-group-addon">所属模块</span> {{ form.belong_module(class_="form-control",id="belong_module",onchange="changeModule()") }}
                                             </div>
                                             <div class="form-group input-group">
-                                                <span class="input-group-addon">依赖用例</span>
-                                                <select name="dependences" class="form-control">
-                                                    <option value="请选择">请选择</option>
-                                                </select>
+                                                <span class="input-group-addon">依赖用例</span> {{ form.case_depend_on(class_="form-control",id="case_depend_on") }}
                                             </div>
                                             <div class="form-group input-group">
-                                                <span class="input-group-addon">编写人员</span>
-                                                <input class="form-control" placeholder="author">
+                                                <span class="input-group-addon">编写人员</span> {{ form.author(class_="form-control",placeholder="Author") }}
                                             </div>
                                             <div class="form-group input-group">
-                                                <span class="input-group-addon">前置条件</span>
-                                                <input class="form-control" placeholder="author">
+                                                <span class="input-group-addon">前置条件</span> {{ form.pre_condition(class_="form-control") }}
                                             </div>
                                             <button type="submit" class="btn btn-default" style="margin: 10px 10px 10px 80px">提交</button>
                                             <button type="reset" class="btn btn-default">重置</button>
@@ -161,20 +149,11 @@
                                             <br>
                                             <div class="form-group input-group">
                                                 <span class="input-group-addon">URL</span>
-                                                <input class="form-control" placeholder="/api/login/">
+                                                {{ form.request_url(class_="form-control",placeholder="/api/test/")}}
                                                 <span class="input-group-addon">Method</span>
-                                                <select class="form-control" name="method" id="method">
-                                                    <option>POST</option>
-                                                    <option>GET</option>
-                                                    <option>PUT</option>
-                                                    <option>DELETE</option>
-                                                </select>
+                                                {{ form.request_method(class_="form-control",id="method")}}
                                                 <span class="input-group-addon">Type</span>
-                                                <select class="form-control" name="DataType" id="DataType">
-                                                    <option>data</option>
-                                                    <option>json</option>
-                                                    <option>params</option>
-                                                </select>
+                                                {{ form.request_type(class_="form-control",id="type")}}
                                             </div>
                                             <input type="button" class="btn btn-info btn-sm" onclick="addTr('reqData')" value="添加">
                                             <input type="button" class="btn btn-danger btn-sm" onclick="delTr()" value="删除">
@@ -196,7 +175,7 @@
                                                             <input type="checkbox">
                                                         </td>
                                                         <td>
-                                                            <select class="form-control">
+                                                            <select class="form-control" name='form-'>
                                                                 <option>string</option>
                                                                 <option>int</option>
                                                                 <option>float</option>
@@ -354,6 +333,8 @@ $(function() {
 
 })
 
+
+
 function addTr(id) {
 
     var dataTrHtml =
@@ -464,64 +445,28 @@ function allCheck(id) {
 
 }
 
+function changeProject() {
+    const project_id = $('#belong_project').val()
+    var select_module = $('#belong_module')
+    select_module.empty()
+    $.getJSON('/api/modules/' + project_id, function(data) {
+        $.each(data, function(index, value) {
+            select_module.append('<option value="' + value[0] + '">' + value[1] + '</option>')
+        })
+        changeModule()
+    })
+}
 
-
-$(function() {
-    $(".selectList").each(function() {
-        var url = "/api/project/";
-        
-        var areaJson;
-        var temp_html;
-        var oProvince = $(this).find(".province");
-        var oCity = $(this).find(".city");
-        var oDistrict = $(this).find(".district");
-        //初始化省
-        var province = function() {
-            $.each(areaJson, function(i, province) {
-                temp_html += "<option value='" + province.p + "'>" + province.p + "</option>";
-            });
-            oProvince.html(temp_html);
-            city();
-        };
-        //赋值市
-        var city = function() {
-            temp_html = "";
-            var n = oProvince.get(0).selectedIndex;
-            $.each(areaJson[n].c, function(i, city) {
-                temp_html += "<option value='" + city.ct + "'>" + city.ct + "</option>";
-            });
-            oCity.html(temp_html);
-            district();
-        };
-        //赋值县
-        var district = function() {
-            temp_html = "";
-            var m = oProvince.get(0).selectedIndex;
-            var n = oCity.get(0).selectedIndex;
-            if (typeof(areaJson[m].c[n].d) == "undefined") {
-                oDistrict.css("display", "none");
-            } else {
-                oDistrict.css("display", "inline");
-                $.each(areaJson[m].c[n].d, function(i, district) {
-                    temp_html += "<option value='" + district.dt + "'>" + district.dt + "</option>";
-                });
-                oDistrict.html(temp_html);
-            };
-        };
-        //选择省改变市
-        oProvince.change(function() {
-            city();
-        });
-        //选择市改变县
-        oCity.change(function() {
-            district();
-        });
-        //获取json数据
-        $.getJSON(url, function(data) {
-            areaJson = data;
-            province();
-        });
-    });
-});
+function changeModule() {
+    const module_id = $('#belong_module').val()
+    var select_case = $('#case_depend_on')
+    select_case.empty()
+    select_case.append('<option value="0">无依赖</option>')
+    $.getJSON('/api/cases/' + module_id, function(data) {
+        $.each(data, function(index, value) {
+            select_case.append('<option value="' + value[0] + '">' + value[1] + '</option>')
+        })
+    })
+}
 </script>
 {% endblock %}

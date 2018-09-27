@@ -1,4 +1,4 @@
-from wtforms import StringField,BooleanField,PasswordField,SubmitField,TextAreaField,SelectField
+from wtforms import StringField,BooleanField,PasswordField,SubmitField,TextAreaField,SelectField,FieldList,FormField
 from flask_wtf import FlaskForm
 from wtforms.validators import EqualTo,Required,DataRequired
 
@@ -30,6 +30,45 @@ class AddModuleForm(FlaskForm):
 	tester = StringField('测试人员')
 	desc = TextAreaField('简要描述')
 
+class VariablesForm(FlaskForm):
+
+	variable_type = SelectField()
+	variable_key = StringField()
+	variable_value = StringField()
+
+class ParametersForm(FlaskForm):
+
+	parameter_key = StringField()
+	parameter_value = StringField()
+
+class HooksForm(FlaskForm):
+
+	setup_hooks = StringField()
+	teardown_hooks = StringField()
+
+class DataForm(FlaskForm):
+
+	data_type = SelectField()
+	data_key = StringField()
+	data_value = StringField()
+
+class HeadersForm(FlaskForm):
+
+	header_key = StringField()
+	header_value = StringField()
+
+class ExtractsForm(FlaskForm):
+
+	extract_key = StringField()
+	extract_value = StringField()
+
+class ValidatesForm(FlaskForm):
+
+	validate_check = StringField()
+	validate_comparator = SelectField()
+	validate_type = SelectField()
+	validate_expected = StringField()
+
 class AddCaseForm(FlaskForm):
 
 	case_name = StringField('用例名称')
@@ -38,5 +77,19 @@ class AddCaseForm(FlaskForm):
 	case_depend_on = SelectField('依赖用例')
 	pre_condition = SelectField('前置条件')
 	author = StringField('创建者')
-	url = StringField('url')
+	request_url = StringField('url')
+	request_method = SelectField()
+	request_type = SelectField()
+	request_data = FieldList(FormField(DataForm))
+	request_headers = FieldList(FormField(HeadersForm))
+	extracts = FieldList(FormField(ExtractsForm))
+	validates = FieldList(FormField(ValidatesForm))
+	variables = FieldList(FormField(VariablesForm))
+	parameters = FieldList(FormField(ParametersForm))
+	hooks = FieldList(FormField(HooksForm))
+
+		
+
+
+
 
