@@ -5,31 +5,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-        ApiRunner-{% block title %}{% endblock %}
+        ApiRunner-{% block title %}{% endblock title%}
     </title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
-    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='css/font-awesome.css') }}" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='js/morris/morris-0.4.3.min.css') }}" rel="stylesheet" />
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    <link href="{{ url_for('static', filename='css/custom-styles.css') }}" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='js/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet" />
-    <script src="{{ url_for('static', filename='js/jquery-1.10.2.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery.metisMenu.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/Lightweight-Chart/jquery.chart.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/morris/raphael-2.1.0.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/morris/morris.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/easypiechart.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/easypiechart-data.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/dataTables/jquery.dataTables.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/dataTables/dataTables.bootstrap.js') }}"></script>
+    {% from 'macros.html' import static_file %}
+    {{ static_file('icon', 'img/favicon.ico') }}
+    {{ static_file('css', 'css/bootstrap.css') }}
+    {{ static_file('css', 'css/font-awesome.css') }}
+    {{ static_file('css', 'js/morris/morris-0.4.3.min.css') }}
+    {{ static_file('css', "https://fonts.googleapis.com/css?family=Open+Sans", local=False) }}
+    {{ static_file('css', "css/custom-styles.css") }}
+    {{ static_file('css', "js/dataTables/dataTables.bootstrap.css") }}
+    {{ static_file('js', "js/jquery-1.10.2.js") }}
+    {{ static_file('js', "js/bootstrap.min.js") }}
+    {{ static_file('js', "js/jquery.metisMenu.js") }}
+    {{ static_file('js', "js/Lightweight-Chart/jquery.chart.js") }}
+    {{ static_file('js', "js/morris/raphael-2.1.0.min.js") }}
+    {{ static_file('js', "js/morris/morris.js") }}
+    {{ static_file('js', "js/easypiechart.js") }}
+    {{ static_file('js', "js/easypiechart-data.js") }}
+    {{ static_file('js', "js/dataTables/jquery.dataTables.js") }}
+    {{ static_file('js', "js/dataTables/dataTables.bootstrap.js") }}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script>
-    $(document).ready(function() {
+        $(document).ready(function() {
         $('#dataTables-example').dataTable();
     });
     </script>
-    <script src="{{ url_for('static', filename='js/custom-scripts.js') }}"></script>
+    {{ static_file('js', "js/custom-scripts.js") }}
 </head>
 
 <body>
@@ -48,8 +51,8 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-							<i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-						</a>
+                            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
@@ -65,10 +68,10 @@
             </ul>
         </nav>
         {% for message in get_flashed_messages() %}
-            <div class="alert alert-warning">
-                <button type="button" class="close" data-dismiss="alert"></button>
-                {{ message }}
-            </div>
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert"></button>
+            {{ message }}
+        </div>
         {% endfor %}
         <!--/. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
@@ -97,35 +100,38 @@
                         <a href="{{url_for('settings')}}"><i class="fa fa-cog"></i> 系统设置 </a>
                     </li>
                     <!-- <li>
-									<a href="#"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-									<ul class="nav nav-second-level">
-										<li>
-												<a href="#">Second Level Link</a>
-										</li>
-										<li>
-												<a href="#">Second Level Link</a>
-										</li>
-										<li>
-											<a href="#">Second Level Link<span class="fa arrow"></span></a>
-											<ul class="nav nav-third-level">
-												<li>
-													<a href="#">Third Level Link</a>
-												</li>
-												<li>
-													<a href="#">Third Level Link</a>
-												</li>
-												<li>
-													<a href="#">Third Level Link</a>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li> -->
+                                    <a href="#"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                                <a href="#">Second Level Link</a>
+                                        </li>
+                                        <li>
+                                                <a href="#">Second Level Link</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Second Level Link<span class="fa arrow"></span></a>
+                                            <ul class="nav nav-third-level">
+                                                <li>
+                                                    <a href="#">Third Level Link</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Third Level Link</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Third Level Link</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li> -->
                 </ul>
             </div>
     </div>
     </nav>
     </div>
+    {% for message in get_flashed_messages() %}
+    <div>{{ message }}</div>
+    {% endfor %}
     {% block content %}{% endblock %}
 </body>
 

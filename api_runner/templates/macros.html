@@ -1,0 +1,30 @@
+{% macro static_file(type, filename_or_url, local=True) %}
+	{% if local %}
+		{% set filename_or_url =  url_for('static', filename = filename_or_url) %}		
+	{% endif %}
+	{% if type == 'css' %}
+		<link rel="stylesheet" href="{{ filename_or_url }}" type="text/css">
+	{% elif type == 'js' %}
+		<script type="text/javascript" src="{{ filename_or_url }}" ></script>
+	{% elif type == 'icon' %}
+		<link rel="icon" href="{{ filename_or_url }}">
+	{% endif %}	
+{% endmacro %}
+
+
+{% macro form_field(field, label) %}
+	{# {{ field.label }} #}
+	<div class="form-group input-group">
+	    <span class="input-group-addon">{{ label }}</span>
+		{{ field(**kwargs)}}
+	</div>
+	{% if field.errors %}		
+		{% for message in field.errors %}
+			<div class="alert alert-error">
+			    <a class="close" data-dismiss="alert">×</a>
+			    <strong>{{ message }}</strong>
+			</div>
+		{% endfor %}
+	{% endif %}
+{% endmacro %}
+

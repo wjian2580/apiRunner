@@ -48,19 +48,15 @@
                                         <td>{{module.tester}}</td>
                                         <td>{{module.cases|length}}</td>
                                         <td>{{module.create_time}}</td>
-                                        <td>
-                                            <div class="btn-group btn-group-xs">
-                                                <button type="button" class="btn btn-default btn-xs text-primary" data-toggle="tooltip" title="编辑">
-                                                    <span class="glyphicon glyphicon-pencil"></span>
-                                                </button>
-                                                <button type="button" class="btn btn-default btn-xs text-primary" data-toggle="tooltip" title="删除">
-                                                    <span class="glyphicon glyphicon-trash"></span>
-                                                </button>
-                                                <button type="button" class="btn btn-default btn-xs text-primary" data-toggle="tooltip" title="运行">
-                                                    <span class="glyphicon glyphicon-play"></span>
-                                                </button>
-                                            </div>
-                                        </td>
+                                       <td>
+                                           <div class="btn-group">
+                                               <button type="button" class="btn btn-default" data-toggle="tooltip" title="编辑">
+                                                   <a href="{{ url_for('edit_module', module_id=module.id) }}">编辑</a>
+                                               </button>
+                                               <button type="button" class="btn btn-default" data-toggle="tooltip" title="删除" onclick="delete_module({{ module.id }})">删除</button>
+                                               <button type="button" class="btn btn-default" data-toggle="tooltip" title="运行">运行</button>
+                                           </div>
+                                       </td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -74,9 +70,34 @@
     </div>
 </div>
 <script>
+
 $("#All").click(function() {
     var flag = this.checked;
     $(":checkbox[name='project']").prop('checked', flag);
 });
+
+function delete_module(module_id) {
+    $.confirm({
+        title: "确认",
+        content: "警告：将删除该模块下所有用例",
+        type: "red",
+        icon: "glyphicon glyphicon-question-sign",
+        buttons: {
+            ok: {
+                text: "确认",
+                btnClass: "btn-primary",
+                action: function(){
+                    $.post('/api/delete_module/'+module_id)
+                    alert('删除成功')
+                    window.location.reload()
+                }
+            },
+            concel: {
+                text: "取消",
+                btnClass: "btn-primary"
+            }
+        }
+    });
+}
 </script>
 {% endblock %}

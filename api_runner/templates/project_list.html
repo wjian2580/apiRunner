@@ -34,7 +34,7 @@
                                         <button type="button" class="btn btn-xs" style="margin-right: 5px">批量删除</button>
                                         <button type="button" class="btn btn-xs" onclick="">批量运行</button>
                                     </div>
-                                    {% for project in projects %}                                       
+                                    {% for project in projects %}
                                     <tr class="odd gradeX">
                                         <td>
                                             <label>
@@ -47,16 +47,12 @@
                                         <td>{{ project.modules|length }}/{{project.cases|length}}</td>
                                         <td>{{ project.create_time }}</td>
                                         <td>
-                                            <div class="btn-group btn-group-xs">
-                                                <button type="button" class="btn btn-default btn-xs text-primary" data-toggle="tooltip" title="编辑">
-                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default" data-toggle="tooltip" title="编辑">
+                                                    <a href="{{ url_for('edit_project', project_id=project.id) }}">编辑</a>
                                                 </button>
-                                                <button type="button" class="btn btn-default btn-xs text-primary" data-toggle="tooltip" title="删除">
-                                                    <span class="glyphicon glyphicon-trash"></span>
-                                                </button>
-                                                <button type="button" class="btn btn-default btn-xs text-primary" data-toggle="tooltip" title="运行">
-                                                    <span class="glyphicon glyphicon-play"></span>
-                                                </button>
+                                                <button type="button" class="btn btn-default" data-toggle="tooltip" title="编辑" onclick="delete_project({{ project.id }})">删除</button>
+                                                <button type="button" class="btn btn-default" data-toggle="tooltip" title="运行">运行</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -76,5 +72,29 @@ $("#All").click(function() {
     var flag = this.checked;
     $(":checkbox[name='project']").prop('checked', flag);
 });
+
+function delete_project(project_id) {
+    $.confirm({
+        title: "确认",
+        content: "警告： 将删除该项目下所有模块和用例",
+        type: "red",
+        icon: "glyphicon glyphicon-question-sign",
+        buttons: {
+            ok: {
+                text: "确认",
+                btnClass: "btn-primary",
+                action: function(){
+                    $.post('/api/delete_project/'+project_id)
+                    alert('删除成功')
+                    window.location.reload()
+                }
+            },
+            concel: {
+                text: "取消",
+                btnClass: "btn-primary"
+            }
+        }
+    });
+}
 </script>
 {% endblock %}

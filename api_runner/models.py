@@ -27,8 +27,8 @@ class ProjectInfo(db.Model):
     desc = db.Column(db.String(200))
     create_time = db.Column(db.DateTime)
     update_time = db.Column(db.DateTime)
-    cases = db.relationship('CaseInfo', backref='project_info')
-    modules = db.relationship('ModuleInfo', backref='project_info')
+    cases = db.relationship('CaseInfo', backref='project_info', cascade='all')
+    modules = db.relationship('ModuleInfo', backref='project_info', cascade='all')
 
     def __repr__(self):
         return '<Project %s>' % self.project_name
