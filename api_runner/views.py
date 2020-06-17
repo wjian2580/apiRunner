@@ -34,6 +34,7 @@ def test_context():
 @app.route('/api/project_list/')
 @login_required
 def project_list():
+	app.logger.info('project_list viewing')
 	projects = ProjectInfo.query.all()
 	if request.is_xhr:
 		return jsonify([(project.id,project.project_name) for project in projects])
@@ -213,7 +214,7 @@ def logout():
 @app.route('/api/change_password/',methods=['GET','POST'])
 @login_required
 def change_password():
-	form = ChangePasswordForm()	
+	form = ChangePasswordForm() 
 	if form.validate_on_submit():
 		old_password = request.form.get('old_password',None)
 		new_password = request.form.get('new_password',None)

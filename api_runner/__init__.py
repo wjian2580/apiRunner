@@ -18,17 +18,19 @@ lm.session_protection='strong'
 lm.login_view='login'
 lm.init_app(app)
 
-from api_runner import views
 
-
-def register_log():
+def register_log(app):
 	app.logger.setLevel(logging.INFO)
 
 	formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 	file_handler = RotatingFileHandler('logs/api_runner.log', maxBytes=10*1024*1024, backupCount=10)
 	file_handler.setFormatter(formatter)
-	file_handler.setLevel(Logging.INFO)
+	file_handler.setLevel(logging.INFO)
 
 	if not app.debug:
 		app.logger.addHandler(file_handler)
+
+register_log(app)
+
+from api_runner import views
